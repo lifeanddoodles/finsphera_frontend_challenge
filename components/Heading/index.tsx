@@ -1,19 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-
-const getClasses = (level: number) => {
-  switch (level) {
-    case 1:
-      return "text-3xl xl:text-4xl";
-    case 3:
-      return "text-xl";
-    case 4:
-      return "text-lg";
-    case 2:
-    default:
-      return "text-2xl";
-  }
-};
+import { getClasses } from "./utils";
 
 const Heading = ({
   children,
@@ -26,9 +13,7 @@ const Heading = ({
 }) => {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
   const mergedClasses = twMerge(
-    `title-font text-neutral-900 dark:text-white font-medium ${getClasses(
-      level
-    )}`,
+    `title-font font-medium ${getClasses(level)}`,
     className
   );
 
