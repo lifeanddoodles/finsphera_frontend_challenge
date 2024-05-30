@@ -15,8 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="text-neutral-800 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-950 body-font min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }
