@@ -10,7 +10,7 @@ const TabList = ({
   setActiveTab: Dispatch<SetStateAction<string>>;
 }) => {
   return (
-    <ul role="tablist" className="flex gap-4 justify-center">
+    <ul role="tablist" className="flex gap-4 justify-center mb-8">
       {tabs.map((tab) => (
         <li
           role="tab"
@@ -18,7 +18,7 @@ const TabList = ({
           aria-controls={tab.controls}
           aria-selected={tab.name === activeTab}
           onClick={() => setActiveTab(tab.name)}
-          className="cursor-pointer text-center text-lg"
+          className="cursor-pointer text-center text-lg hover:text-primary transition duration-300 ease-in-out"
         >
           {tab.name.toUpperCase()}
         </li>

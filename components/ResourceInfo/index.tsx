@@ -6,9 +6,9 @@ import Heading from "@/components/Heading";
 import { ResourceDetailsProps } from "@/components/ResourceInfo/ResourceInfo.types";
 import Text from "@/components/Text";
 import { BASE_IMAGE_URL } from "@/utils/constants";
-import Image from "next/image";
 import { useState } from "react";
 import TabPanels, { TabPanel } from "../TabPanels";
+import MediaGrid from "./MediaGrid";
 import { MetaContentColumns } from "./MetaContentColumns";
 import { movieMetaTitles, tabTitles, tvShowMetaTitles } from "./utils";
 
@@ -47,41 +47,35 @@ const ResourceInfo = <T,>({
         </TabPanel>
         <TabPanel id="panel-videos" activeTab={activeTab}>
           {/** TODO: Create MediaGrid */}
-          {resource.videos.results?.length > 0
-            ? resource.videos.results.map((video) => (
-                <iframe
-                  key={video.key}
-                  width="420"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${video.key}`}
-                ></iframe>
-              ))
-            : "No videos found"}
+          {resource.videos.results?.length > 0 ? (
+            <MediaGrid
+              resourceName="videos"
+              resources={resource.videos.results}
+            />
+          ) : (
+            "No videos found"
+          )}
         </TabPanel>
         <TabPanel id="panel-photos" activeTab={activeTab}>
           {/** TODO: Create MediaGrid */}
-          {resource.images.backdrops?.length > 0
-            ? resource.images.backdrops.map((image) => (
-                <Image
-                  key={image.file_path}
-                  src={`${BASE_IMAGE_URL}/w300/${image.file_path}`}
-                  alt=""
-                  width={200}
-                  height={300}
-                />
-              ))
-            : "No backdrops found"}
-          {resource.images.posters?.length > 0
-            ? resource.images.posters.map((image) => (
-                <Image
-                  key={image.file_path}
-                  src={`${BASE_IMAGE_URL}/w300/${image.file_path}`}
-                  alt=""
-                  width={200}
-                  height={300}
-                />
-              ))
-            : "No posters found"}
+          {resource.images.backdrops?.length > 0 ? (
+            <MediaGrid
+              title="Backdrops"
+              resourceName="images"
+              resources={resource.images.backdrops}
+            />
+          ) : (
+            "No backdrops found"
+          )}
+          {resource.images.posters?.length > 0 ? (
+            <MediaGrid
+              title="Posters"
+              resourceName="images"
+              resources={resource.images.posters}
+            />
+          ) : (
+            "No posters found"
+          )}
         </TabPanel>
       </TabPanels>
       <section>
