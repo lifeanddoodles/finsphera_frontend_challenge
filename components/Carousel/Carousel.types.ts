@@ -2,13 +2,13 @@ import { ResourceDetailsProps } from "@/components/ResourceInfo/ResourceInfo.typ
 
 export type CardProps = {
   id: number;
-  title: string;
   posterPath: string;
   href?: string;
   averageRating?: number;
   width: number;
   height: number;
   className?: string;
+  children?: React.ReactNode;
 };
 
 export type MovieProps = {
@@ -46,4 +46,5 @@ export type CarouselProps<T> = {
   height?: number;
   imagePathBase?: string;
   imageKey?: string;
+  pathToFooter?: keyof T;
 };

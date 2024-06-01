@@ -7,11 +7,12 @@ import {
   ResourceDetailsProps,
   TvShowDetailsProps,
 } from "@/components/ResourceInfo/ResourceInfo.types";
+import Text from "@/components/Text";
 import { BASE_IMAGE_URL } from "@/utils/constants";
 import { useRef, useState } from "react";
 import useCarouselNavigation from "./hooks/useCarouselNavigation";
 import useDimensions from "./hooks/useDimensions";
-import { GAP_UNIT, PADDING_X_UNIT, isMovieProps, isTvShowProps } from "./utils";
+import { GAP_UNIT, PADDING_X_UNIT, isMovieProps } from "./utils";
 
 const Carousel = <
   T extends
@@ -25,6 +26,7 @@ const Carousel = <
   height = 360,
   imagePathBase = `${BASE_IMAGE_URL}/w300`,
   imageKey = "poster_path",
+  pathToFooter,
 }: CarouselProps<T>) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const {
@@ -71,20 +73,35 @@ const Carousel = <
               <Card
                 key={resource.id}
                 id={resource.id}
-                title={
-                  isMovieProps(resource)
-                    ? resource.title
-                    : isTvShowProps(resource)
-                      ? resource.name
-                      : ""
-                }
                 posterPath={`${imagePathBase}/${resource[imageKey as keyof T]}`}
                 href={`/${resourceName}/${resource.id}`}
-                // averageRating={resource.vote_average}
                 width={width}
                 height={height}
                 className={`grid-rows-[auto,_1fr]`}
-              />
+              >
+                <Card.Footer>
+                  <Heading
+                    level={3}
+                    className={`p-1 text-sm sm:text-base sm:leading-tight font-medium max-w-[240px]`}
+                  >
+                    {isMovieProps(resource) ? resource.title : resource.name}
+                  </Heading>
+                  {resource.vote_average && (
+                    <Text as="span" size="sm" className="p-1 max-w-[240px]">
+                      {resource.vote_average}
+                    </Text>
+                  )}
+                  {pathToFooter && (
+                    <Text
+                      as="span"
+                      size="sm"
+                      className="px-1 leading-none max-w-[240px]"
+                    >
+                      {resource[pathToFooter] as string}
+                    </Text>
+                  )}
+                </Card.Footer>
+              </Card>
             ))}
           </div>
           <CarouselButton

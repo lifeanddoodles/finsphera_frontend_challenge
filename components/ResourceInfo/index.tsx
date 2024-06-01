@@ -49,6 +49,7 @@ const ResourceInfo = <T,>({
           imageKey={"profile_path"}
           width={200}
           height={300}
+          pathToFooter="character"
         />
       </section>
     </>
