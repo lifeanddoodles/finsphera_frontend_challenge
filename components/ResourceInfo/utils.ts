@@ -1,11 +1,11 @@
 import { ResourceDetailsProps } from "@/components/ResourceInfo/ResourceInfo.types";
 import { PossibleKeyValueTypes } from "./ResourceInfo.types";
 
-export const tabTitles = {
-  overview: "Overview",
-  videos: "Videos",
-  photos: "Photos",
-};
+export const tabTitles = [
+  { name: "Overview", controls: "panel-overview" },
+  { name: "Videos", controls: "panel-videos" },
+  { name: "Photos", controls: "panel-photos" },
+];
 
 export const movieMetaTitles = {
   release_date: "Released",

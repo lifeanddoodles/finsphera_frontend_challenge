@@ -104,6 +104,9 @@ const Carousel = <
               </Card>
             ))}
           </div>
+          {/**
+           * TODO: If carouselWidth <= containerWidth, remove buttons
+           */}
           <CarouselButton
             ariaLabel="Scroll left"
             onClick={handleScrollLeft}

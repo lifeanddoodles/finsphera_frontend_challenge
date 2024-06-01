@@ -175,45 +175,45 @@ export type ResourceDetailsProps<T> = {
       department: string;
       job: string;
     }[];
-    images: {
-      backdrops: {
-        aspect_ratio: number;
-        height: number;
-        iso_639_1: string;
-        file_path: string;
-        vote_average: number;
-        vote_count: number;
-        width: number;
-      }[];
-      logos: {
-        aspect_ratio: number;
-        height: number;
-        iso_639_1: string;
-        file_path: string;
-        vote_average: number;
-        vote_count: number;
-        width: number;
-      }[];
-      posters: {
-        aspect_ratio: number;
-        height: number;
-        iso_639_1: string;
-        file_path: string;
-        vote_average: number;
-        vote_count: number;
-        width: number;
-      }[];
-    };
-    external_ids: {
-      imdb_id: string | null;
-      freebase_mid?: string | number | null;
-      freebase_id?: string | number | null;
-      tvdb_id?: string | number | null;
-      tvrage_id?: string | number | null;
-      wikidata_id: string | null;
-      facebook_id: string | null;
-      instagram_id: string | null;
-      twitter_id: string | null;
-    };
+  };
+  images: {
+    backdrops: {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: string;
+      file_path: string;
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }[];
+    logos: {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: string;
+      file_path: string;
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }[];
+    posters: {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: string;
+      file_path: string;
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }[];
+  };
+  external_ids: {
+    imdb_id: string | null;
+    freebase_mid?: string | number | null;
+    freebase_id?: string | number | null;
+    tvdb_id?: string | number | null;
+    tvrage_id?: string | number | null;
+    wikidata_id: string | null;
+    facebook_id: string | null;
+    instagram_id: string | null;
+    twitter_id: string | null;
   };
 } & T;
