@@ -1,11 +1,14 @@
+import { ResourceDetailsProps } from "@/components/ResourceInfo/ResourceInfo.types";
+
 export type CardProps = {
   id: number;
   title: string;
   posterPath: string;
-  href: string;
-  averageRating: number;
+  href?: string;
+  averageRating?: number;
   width: number;
   height: number;
+  className?: string;
 };
 
 export type MovieProps = {
@@ -38,8 +41,9 @@ export type ResourceProps<T> = {
 export type CarouselProps<T> = {
   title: string;
   resourceName: string;
-  resources: ResourceProps<T>[];
+  resources: ResourceDetailsProps<T>[] | (T & { id: number })[];
   width?: number;
   height?: number;
   imagePathBase?: string;
+  imageKey?: string;
 };
