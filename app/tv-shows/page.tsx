@@ -6,13 +6,22 @@ import {
 } from "@/components/Carousel/Carousel.types";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
+import Loading from "@/components/Loading";
 import Text from "@/components/Text";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function TvShowsCategory() {
-  const [tvShows, setTvShows] = useState<ResourceProps<TvShowProps>[] | []>([]);
+  const [popularTvShows, setPopularTvShows] = useState<
+    ResourceProps<TvShowProps>[] | []
+  >([]);
+  const [topRatedTvShows, setTopRatedTvShows] = useState<
+    ResourceProps<TvShowProps>[] | []
+  >([]);
+  const [nowAiringTvShows, setNowAiringTvShows] = useState<
+    ResourceProps<TvShowProps>[] | []
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,10 +29,22 @@ export default function TvShowsCategory() {
     const getResources = async () =>
       await Promise.all([
         fetch(
-          `${BASE_URL}/discover/tv?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+          `${BASE_URL}/tv/popular?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
         ).then(async (res) => {
           const resJson = await res.json();
-          setTvShows(resJson.results);
+          setPopularTvShows(resJson.results);
+        }),
+        fetch(
+          `${BASE_URL}/tv/top_rated?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+        ).then(async (res) => {
+          const resJson = await res.json();
+          setTopRatedTvShows(resJson.results);
+        }),
+        fetch(
+          `${BASE_URL}/tv/on_the_air?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+        ).then(async (res) => {
+          const resJson = await res.json();
+          setNowAiringTvShows(resJson.results);
         }),
       ])
         .finally(() => setLoading(false))
@@ -37,25 +58,27 @@ export default function TvShowsCategory() {
 
   return (
     <>
-      {tvShows && tvShows[0] && (
-        <Hero imageSrc={`${BASE_IMAGE_URL}/w1280/${tvShows[0].backdrop_path}`}>
+      {popularTvShows && popularTvShows[0] && (
+        <Hero
+          imageSrc={`${BASE_IMAGE_URL}/w1280/${popularTvShows[0].backdrop_path}`}
+        >
           <Hero.Title>
             <Heading
               level={1}
               className="text-3xl sm:text-4xl xl:text-4xl mb-4 text-white"
             >
-              {tvShows[0].name}
+              {popularTvShows[0].name}
             </Heading>
           </Hero.Title>
           <Hero.Body>
             <Text className="text-sm mb-4">
-              {`${tvShows[0].overview.split(".")[0]}.`}
+              {`${popularTvShows[0].overview.split(".")[0]}.`}
             </Text>
           </Hero.Body>
           <Hero.Actions>
             {
               <Link
-                href={`/movies/${tvShows[0].id}`}
+                href={`/movies/${popularTvShows[0].id}`}
                 className="btn btn-primary bg-accent hover:bg-accent-dark px-6 py-2 rounded-lg"
               >
                 See more details
@@ -65,26 +88,39 @@ export default function TvShowsCategory() {
         </Hero>
       )}
       {loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div
-            className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-            role="status"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+        <Loading />
       ) : error ? (
         <Text role="status">{error}</Text>
       ) : (
-        tvShows && (
-          <Carousel
-            title="Popular TV Shows"
-            resourceName="tv-shows"
-            resources={tvShows}
-            width={240}
-            height={360}
-          />
-        )
+        <>
+          {popularTvShows && (
+            <Carousel
+              title="Popular TV shows"
+              resourceName="tv-shows"
+              resources={popularTvShows}
+              width={240}
+              height={360}
+            />
+          )}
+          {topRatedTvShows && (
+            <Carousel
+              title="Top rated TV shows"
+              resourceName="tv-shows"
+              resources={topRatedTvShows}
+              width={240}
+              height={360}
+            />
+          )}
+          {nowAiringTvShows && (
+            <Carousel
+              title="TV shows now airing"
+              resourceName="tv-shows"
+              resources={nowAiringTvShows}
+              width={240}
+              height={360}
+            />
+          )}
+        </>
       )}
     </>
   );
