@@ -4,6 +4,7 @@ import { Card } from "@/components/Carousel/Card";
 import { isMovieProps } from "@/components/Carousel/utils";
 import Heading from "@/components/Heading";
 import { TextInput } from "@/components/Input";
+import Loading from "@/components/Loading";
 import {
   MovieDetailsProps,
   ResourceDetailsProps,
@@ -79,7 +80,7 @@ const SearchPage = () => {
         </form>
       </header>
       {loading ? (
-        "Loading..."
+        <Loading />
       ) : error ? (
         <Text role="status" className="text-center px-6">
           {error}
@@ -92,7 +93,7 @@ const SearchPage = () => {
                 key={resource.id}
                 id={resource.id}
                 posterPath={`${BASE_IMAGE_URL}/w300/${resource.poster_path}`}
-                href={`/${isMovieProps(resource) ? "movies" : "tv-series"}/${resource.id}`}
+                href={`/${isMovieProps(resource) ? "movies" : "tv-shows"}/${resource.id}`}
                 width={240}
                 height={240 * 1.6}
                 className={`grid-rows-[auto,_1fr]`}

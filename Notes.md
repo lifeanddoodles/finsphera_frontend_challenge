@@ -2,7 +2,7 @@
 
 ## Scalability
 
-Integrate a global state with Redux (or similar) in case we need to keep track of a resource. This could also be useful if we integrate authentication and we want to show personalized info about the user throughout the application.
+Integrate a global state with Redux (or similar) in case we need to keep track of a resource, save our last search, etc. This could also be useful if we integrate authentication and we want to show personalized info about the user throughout the application.
 
 I am not too familiar but I believe one could also cache API responses with something like Redis to improve waiting times for the user, among other benefits.
 
@@ -21,12 +21,14 @@ I have minimal experience with AWS, but here's what I could gather:
 
 ## What I would add if I had more time
 
-- Add Meta per page
 - Unit tests
-- Component stories
-- API routes on Next.js
-- Create a useFetch custom hook
-- Create components for layout like Column and Row
+- Format meta data
+- Review rating component
+- Add Meta per page
+- Reorganize types, some are used in multiple components
 - Add Schema markup, like [Movie](https://schema.org/Movie) and [TVSeries](https://schema.org/TVSeries)
 - Add general loading
+- Create components for layout like Column and Row
+- Component stories
+- API routes on Next.js
 - I left a few TODO comments through the application as well

@@ -124,7 +124,9 @@ const Carousel = <
           />
         </div>
       ) : (
-        "No results found"
+        <Text className="text-center px-6" role="status">
+          No cast found
+        </Text>
       )}
     </section>
   );

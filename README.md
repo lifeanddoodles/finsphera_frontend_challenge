@@ -6,10 +6,6 @@ FinSphera Frontend Technical Assessment: Movie landing page.
 
 A movie landing page that shows a list of movies and their details. Created with the movie database API (https://www.themoviedb.org/documentation/api).
 
-## Deployment
-
-Deployed on [Vercel](https://movie-database-re38hfeb6-sandra-vargas-projects.vercel.app/)
-
 ### Aspects to be evaluated
 
 - Documentation of the project. You have the opportunity to show here how organized you are. Don't miss the opportunity 😉.

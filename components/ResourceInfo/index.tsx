@@ -69,7 +69,9 @@ const ResourceInfo = <T,>({
               resources={resource.videos.results}
             />
           ) : (
-            "No videos found"
+            <Text className="text-center px-6" role="status">
+              No videos found
+            </Text>
           )}
         </TabPanel>
         <TabPanel id="panel-photos" activeTab={activeTab}>
@@ -80,7 +82,9 @@ const ResourceInfo = <T,>({
               resources={resource.images.backdrops}
             />
           ) : (
-            "No backdrops found"
+            <Text className="text-center px-6 mb-6" role="status">
+              No backdrops found
+            </Text>
           )}
           {resource.images.posters?.length > 0 ? (
             <MediaGrid
@@ -89,7 +93,9 @@ const ResourceInfo = <T,>({
               resources={resource.images.posters}
             />
           ) : (
-            "No posters found"
+            <Text className="text-center px-6" role="status">
+              No posters found
+            </Text>
           )}
         </TabPanel>
       </TabPanels>
