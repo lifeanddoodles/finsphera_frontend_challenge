@@ -7,6 +7,7 @@ import {
 } from "@/components/Carousel/Carousel.types";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
+import Loading from "@/components/Loading";
 import Text from "@/components/Text";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
 import Link from "next/link";
@@ -73,14 +74,7 @@ export default function Home() {
         </Hero>
       )}
       {loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div
-            className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-            role="status"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+        <Loading />
       ) : error ? (
         <Text role="status">{error}</Text>
       ) : (

@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import ResourceInfo from "@/components/ResourceInfo";
 import {
   ResourceDetailsProps,
@@ -30,7 +31,7 @@ const ResourceDetails = ({ params: { id } }: { params: { id: string } }) => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <Text role="status">Loading...</Text>;
+  if (loading) return <Loading />;
   if (error) return <Text role="status">{error}</Text>;
 
   return (

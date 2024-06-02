@@ -1,7 +1,11 @@
 import Heading from "@/components/Heading";
+import {
+  ImageProps,
+  MediaDetailsProps,
+  VideoProps,
+} from "@/components/ResourceInfo/ResourceInfo.types";
 import { BASE_IMAGE_URL } from "@/utils/constants";
 import Image from "next/image";
-import { Suspense } from "react";
 import { twMerge } from "tailwind-merge";
 
 const MediaGridItem = ({
@@ -9,15 +13,14 @@ const MediaGridItem = ({
   resource,
 }: {
   resourceName: "images" | "videos";
-  // TODO: Add more accurate type for resources
-  resource: any;
+  resource: MediaDetailsProps;
 }) => {
   return resourceName === "videos" ? (
     <div className="relative aspect-[16/9]">
       <iframe
         width="420"
         height="236"
-        src={`https://www.youtube.com/embed/${resource.key}`}
+        src={`https://www.youtube.com/embed/${(resource as VideoProps).key}`}
         className="absolute w-full h-full"
       ></iframe>
       {/* TODO: Add flexibility to add other video embeds, not just YouTube */}
@@ -25,7 +28,7 @@ const MediaGridItem = ({
   ) : (
     <div className="relative">
       <Image
-        src={`${BASE_IMAGE_URL}/w300/${resource.file_path}`}
+        src={`${BASE_IMAGE_URL}/w300/${(resource as ImageProps).file_path}`}
         alt=""
         width={200}
         height={300}
@@ -42,8 +45,7 @@ const MediaGrid = ({
 }: {
   title?: string;
   resourceName: "images" | "videos";
-  // TODO: Add more accurate type for resources
-  resources: any[];
+  resources: MediaDetailsProps[];
 }) => {
   const classes = twMerge(
     "grid grid-cols-1 gap-4 auto-rows-auto mb-10",
@@ -56,13 +58,11 @@ const MediaGrid = ({
       {title && <Heading className="mb-4">{title}</Heading>}
       <div className={classes}>
         {resources.map((resource: any) => (
-          // TODO: Fix Suspense not working
-          <Suspense
+          <MediaGridItem
             key={resource.key || resource.file_path}
-            fallback={"Loading"}
-          >
-            <MediaGridItem resourceName={resourceName} resource={resource} />
-          </Suspense>
+            resourceName={resourceName}
+            resource={resource}
+          />
         ))}
         {/* TODO: Add pagination, control with Show More button */}
       </div>

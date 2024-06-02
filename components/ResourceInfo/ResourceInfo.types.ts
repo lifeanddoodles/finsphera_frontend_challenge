@@ -99,6 +99,31 @@ export type TvShowDetailsProps = {
   type: string;
 };
 
+export type ImageProps = {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};
+
+export type VideoProps = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+};
+
+export type MediaDetailsProps = VideoProps | ImageProps;
+
 export type ResourceDetailsProps<T> = {
   adult: boolean;
   backdrop_path: string;
@@ -134,18 +159,7 @@ export type ResourceDetailsProps<T> = {
   vote_average: number;
   vote_count: number;
   videos: {
-    results: {
-      iso_639_1: string;
-      iso_3166_1: string;
-      name: string;
-      key: string;
-      site: string;
-      size: number;
-      type: string;
-      official: boolean;
-      published_at: string;
-      id: string;
-    }[];
+    results: VideoProps[];
   };
   credits: {
     cast: {
@@ -177,33 +191,9 @@ export type ResourceDetailsProps<T> = {
     }[];
   };
   images: {
-    backdrops: {
-      aspect_ratio: number;
-      height: number;
-      iso_639_1: string;
-      file_path: string;
-      vote_average: number;
-      vote_count: number;
-      width: number;
-    }[];
-    logos: {
-      aspect_ratio: number;
-      height: number;
-      iso_639_1: string;
-      file_path: string;
-      vote_average: number;
-      vote_count: number;
-      width: number;
-    }[];
-    posters: {
-      aspect_ratio: number;
-      height: number;
-      iso_639_1: string;
-      file_path: string;
-      vote_average: number;
-      vote_count: number;
-      width: number;
-    }[];
+    backdrops: ImageProps[];
+    logos: ImageProps[];
+    posters: ImageProps[];
   };
   external_ids: {
     imdb_id: string | null;
