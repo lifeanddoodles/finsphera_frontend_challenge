@@ -56,7 +56,7 @@ export default function MoviesCategory() {
             {
               <Link
                 href={`/movies/${movies[0].id}`}
-                className="btn btn-primary bg-accent hover:bg-accent-dark px-2 py-1 rounded-lg text-lg"
+                className="btn btn-primary bg-accent hover:bg-accent-dark px-6 py-2 rounded-lg"
               >
                 See more details
               </Link>
