@@ -5,8 +5,11 @@ import {
   ResourceProps,
   TvShowProps,
 } from "@/components/Carousel/Carousel.types";
+import Heading from "@/components/Heading";
+import Hero from "@/components/Hero";
 import Text from "@/components/Text";
-import { BASE_URL } from "@/utils/constants";
+import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -42,6 +45,28 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col">
+      {movies && movies[0] && (
+        <Hero imageSrc={`${BASE_IMAGE_URL}/w1280/${movies[0].backdrop_path}`}>
+          <Hero.Title>
+            <Heading level={1} className="text-3xl xl:text-4xl mb-4">
+              {movies[0].title}
+            </Heading>
+          </Hero.Title>
+          <Hero.Body>
+            <Text className="text-sm mb-4">{movies[0].overview}</Text>
+          </Hero.Body>
+          <Hero.Actions>
+            {
+              <Link
+                href={`/movies/${movies[0].id}`}
+                className="btn btn-primary bg-accent hover:bg-accent-dark px-2 py-1 rounded-lg text-lg"
+              >
+                See more details
+              </Link>
+            }
+          </Hero.Actions>
+        </Hero>
+      )}
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <div
