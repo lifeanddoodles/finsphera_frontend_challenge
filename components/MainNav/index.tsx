@@ -23,6 +23,11 @@ const mainNavItems = [
     iconSrc: "/search.svg",
     href: "/search",
   },
+  {
+    title: "Sign up",
+    iconSrc: "/user.svg",
+    href: "/signup",
+  },
 ];
 
 const NavItem = ({

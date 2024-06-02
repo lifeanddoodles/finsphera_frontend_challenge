@@ -21,11 +21,12 @@ I have minimal experience with AWS, but here's what I could gather:
 
 ## What I would add if I had more time
 
-- Auth form
+- Add Meta per page
 - Unit tests
 - Component stories
 - API routes on Next.js
 - Create a useFetch custom hook
-- Create components for layout
-- Add 404 page, and loading
+- Create components for layout like Column and Row
+- Add Schema markup, like [Movie](https://schema.org/Movie) and [TVSeries](https://schema.org/TVSeries)
+- Add general loading
 - I left a few TODO comments through the application as well
