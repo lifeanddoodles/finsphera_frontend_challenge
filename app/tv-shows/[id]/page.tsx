@@ -34,10 +34,12 @@ const ResourceDetails = ({ params: { id } }: { params: { id: string } }) => {
   if (error) return <Text role="status">{error}</Text>;
 
   return (
-    <ResourceInfo
-      resource={resource as ResourceDetailsProps<TvShowDetailsProps>}
-      metaTitles={tvShowMetaTitles}
-    />
+    <main className="flex min-h-screen flex-col">
+      <ResourceInfo
+        resource={resource as ResourceDetailsProps<TvShowDetailsProps>}
+        metaTitles={tvShowMetaTitles}
+      />
+    </main>
   );
 };
 

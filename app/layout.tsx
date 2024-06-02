@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import MainNav from "@/components/MainNav";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -17,7 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-neutral-800 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-950 body-font min-h-screen">
+      <body className="relative grid grid-cols-1 sm:grid-cols-[minmax(48px,auto),_1fr] text-neutral-800 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-950 body-font min-h-screen">
+        <MainNav />
         {children}
         <Footer />
       </body>
