@@ -5,22 +5,22 @@ import Link from "next/link";
 const mainNavItems = [
   {
     title: "Home",
-    iconSrc: "/chevron-left.svg",
+    iconSrc: "/house.svg",
     href: "/",
   },
   {
     title: "Movies",
-    iconSrc: "/chevron-right.svg",
+    iconSrc: "/film.svg",
     href: "/movies",
   },
   {
     title: "TV Shows",
-    iconSrc: "/chevron-left.svg",
+    iconSrc: "/tv.svg",
     href: "/tv-shows",
   },
   {
     title: "Search",
-    iconSrc: "/chevron-right.svg",
+    iconSrc: "/search.svg",
     href: "/search",
   },
 ];
@@ -38,7 +38,7 @@ const NavItem = ({
     <li>
       <Link
         href={href}
-        className="flex items-center gap-2 text-white p-4 leading-4 max-h-12 hover:bg-primary-dark transition duration-300 ease-in-out"
+        className="flex items-center gap-2 text-white p-4 leading-4 hover:bg-primary-dark transition duration-300 ease-in-out"
       >
         <Image
           src={iconSrc}
