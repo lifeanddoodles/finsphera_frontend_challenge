@@ -42,7 +42,7 @@ export default function MoviesCategory() {
           <Hero.Title>
             <Heading
               level={1}
-              className="text-3xl sm:text-4xl xl:text-4xl mb-4"
+              className="text-3xl sm:text-4xl xl:text-4xl mb-4 text-white"
             >
               {movies[0].title}
             </Heading>
@@ -76,17 +76,15 @@ export default function MoviesCategory() {
       ) : error ? (
         <Text role="status">{error}</Text>
       ) : (
-        <div className="overflow-hidden">
-          {movies && (
-            <Carousel
-              title="Popular movies"
-              resourceName="movies"
-              resources={movies}
-              width={240}
-              height={360}
-            />
-          )}
-        </div>
+        movies && (
+          <Carousel
+            title="Popular movies"
+            resourceName="movies"
+            resources={movies}
+            width={240}
+            height={360}
+          />
+        )
       )}
     </main>
   );

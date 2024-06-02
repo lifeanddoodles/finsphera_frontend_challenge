@@ -42,7 +42,7 @@ export default function TvShowsCategory() {
           <Hero.Title>
             <Heading
               level={1}
-              className="text-3xl sm:text-4xl xl:text-4xl mb-4"
+              className="text-3xl sm:text-4xl xl:text-4xl mb-4 text-white"
             >
               {tvShows[0].name}
             </Heading>
@@ -76,17 +76,15 @@ export default function TvShowsCategory() {
       ) : error ? (
         <Text role="status">{error}</Text>
       ) : (
-        <div className="overflow-hidden">
-          {tvShows && (
-            <Carousel
-              title="Popular TV Shows"
-              resourceName="tv-shows"
-              resources={tvShows}
-              width={240}
-              height={360}
-            />
-          )}
-        </div>
+        tvShows && (
+          <Carousel
+            title="Popular TV Shows"
+            resourceName="tv-shows"
+            resources={tvShows}
+            width={240}
+            height={360}
+          />
+        )
       )}
     </main>
   );

@@ -17,14 +17,14 @@ const config: Config = {
           dark: colors.teal[900],
         },
         secondary: {
-          light: colors.purple[600],
-          DEFAULT: colors.purple[800],
-          dark: colors.purple[900],
+          light: colors.sky[600],
+          DEFAULT: colors.sky[800],
+          dark: colors.sky[900],
         },
         accent: {
-          light: colors.red[400],
-          DEFAULT: colors.red[600],
-          dark: colors.red[800],
+          light: colors.rose[400],
+          DEFAULT: colors.rose[700],
+          dark: colors.rose[900],
         },
         neutral: {
           50: colors.gray[50],

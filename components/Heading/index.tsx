@@ -13,7 +13,7 @@ const Heading = ({
 }) => {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
   const mergedClasses = twMerge(
-    `title-font font-medium ${getClasses(level)}`,
+    `title-font font-medium text-secondary ${getClasses(level)}`,
     className
   );
 

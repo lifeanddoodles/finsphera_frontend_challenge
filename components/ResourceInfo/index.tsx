@@ -24,7 +24,10 @@ const ResourceInfo = <T,>({
 
   return (
     <>
-      <Heading level={1} className="px-6 mb-8">
+      <Heading
+        level={1}
+        className="px-6 mt-8 mb-8 sm:mt-12 sm:text-4xl xl:text-5xl"
+      >
         {isMovieProps(resource)
           ? resource.title
           : isTvShowProps(resource)
@@ -90,18 +93,17 @@ const ResourceInfo = <T,>({
           )}
         </TabPanel>
       </TabPanels>
-      <section>
-        <Carousel
-          title="Cast"
-          resources={resource.credits.cast}
-          resourceName={"cast"}
-          imagePathBase={`${BASE_IMAGE_URL}/w300`}
-          imageKey={"profile_path"}
-          width={200}
-          height={300}
-          pathToFooter="character"
-        />
-      </section>
+      {/* TODO: Add fallback when no image exists */}
+      <Carousel
+        title="Cast"
+        resources={resource.credits.cast}
+        resourceName={"cast"}
+        imagePathBase={`${BASE_IMAGE_URL}/w300`}
+        imageKey={"profile_path"}
+        width={200}
+        height={300}
+        pathToFooter="character"
+      />
     </>
   );
 };

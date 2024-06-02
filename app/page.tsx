@@ -50,7 +50,7 @@ export default function Home() {
           <Hero.Title>
             <Heading
               level={1}
-              className="text-3xl sm:text-4xl xl:text-4xl mb-4"
+              className="text-3xl sm:text-4xl xl:text-4xl mb-4 text-white"
             >
               {movies[0].title}
             </Heading>

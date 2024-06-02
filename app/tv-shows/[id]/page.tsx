@@ -34,7 +34,7 @@ const ResourceDetails = ({ params: { id } }: { params: { id: string } }) => {
   if (error) return <Text role="status">{error}</Text>;
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col overflow-x-hidden">
       <ResourceInfo
         resource={resource as ResourceDetailsProps<TvShowDetailsProps>}
         metaTitles={tvShowMetaTitles}

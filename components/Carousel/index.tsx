@@ -57,7 +57,7 @@ const Carousel = <
   };
 
   return (
-    <section className="overflow-hidden mb-10" ref={carouselContainerRef}>
+    <section className="overflow-hidden py-2 mb-10" ref={carouselContainerRef}>
       <Heading className={`px-6 mb-4`}>{title}</Heading>
       {resources.length > 0 ? (
         <div className="relative">
@@ -86,7 +86,11 @@ const Carousel = <
                     {isMovieProps(resource) ? resource.title : resource.name}
                   </Heading>
                   {resource.vote_average && (
-                    <Text as="span" size="sm" className="p-1 max-w-[240px]">
+                    <Text
+                      as="span"
+                      size="sm"
+                      className="p-1 mb-2 max-w-[240px]"
+                    >
                       {resource.vote_average}
                     </Text>
                   )}
@@ -94,7 +98,7 @@ const Carousel = <
                     <Text
                       as="span"
                       size="sm"
-                      className="px-1 leading-none max-w-[240px]"
+                      className="px-1 mb-2 leading-none max-w-[240px]"
                     >
                       {resource[pathToFooter] as string}
                     </Text>

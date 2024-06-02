@@ -17,15 +17,16 @@ export const Card = ({
   className,
   children,
 }: CardProps) => {
-  const figureClasses = twMerge("min-h-full hover:bg-neutral-200", className);
+  const figureClasses = twMerge("min-h-full ", className);
 
   return (
-    <li key={id} className="shrink-0 grow-0">
+    <li
+      key={id}
+      className="shrink-0 grow-0 hover:bg-neutral-200 hover:scale-105 transition duration-300 ease-in-out"
+    >
       <Link key={id} href={href}>
         <Figure className={figureClasses}>
-          <div
-            className={"hover:scale-105 transition duration-300 ease-in-out"}
-          >
+          <div className={"overflow-show"}>
             <Image
               src={posterPath}
               alt=""
