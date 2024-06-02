@@ -16,12 +16,12 @@ const MediaGridItem = ({
   resource: MediaDetailsProps;
 }) => {
   return resourceName === "videos" ? (
-    <div className="relative aspect-[16/9]">
+    <div className="aspect-[16/9]">
       <iframe
         width="420"
         height="236"
         src={`https://www.youtube.com/embed/${(resource as VideoProps).key}`}
-        className="absolute w-full h-full"
+        className="w-full h-full"
       ></iframe>
       {/* TODO: Add flexibility to add other video embeds, not just YouTube */}
     </div>
@@ -51,7 +51,7 @@ const MediaGrid = ({
     "grid grid-cols-1 gap-4 auto-rows-auto mb-10",
     resourceName === "images"
       ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      : "md:grid-cols-2 lg:grid-cols-3"
+      : "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   );
   return (
     <>

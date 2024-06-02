@@ -1,3 +1,4 @@
+import Text from "@/components/Text";
 import { Dispatch, SetStateAction } from "react";
 
 const TabList = ({
@@ -20,7 +21,12 @@ const TabList = ({
           onClick={() => setActiveTab(tab.name)}
           className="cursor-pointer text-center text-lg text-primary hover:text-primary-dark transition duration-300 ease-in-out"
         >
-          {tab.name.toUpperCase()}
+          <Text
+            as="span"
+            className={`hover:border-b-2 hover:border-primary-light ${tab.name === activeTab ? "border-b-2 border-primary" : ""}`}
+          >
+            {tab.name.toUpperCase()}
+          </Text>
         </li>
       ))}
     </ul>
