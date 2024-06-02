@@ -5,11 +5,11 @@ const Title = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Body = ({ children }: { children: React.ReactNode }) => {
-  return <div role="group">{children}</div>;
+  return <section role="group">{children}</section>;
 };
 
 const Actions = ({ children }: { children: React.ReactNode }) => {
-  return <div role="group">{children}</div>;
+  return <footer role="group">{children}</footer>;
 };
 
 const Hero = ({
