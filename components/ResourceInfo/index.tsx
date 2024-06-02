@@ -6,6 +6,7 @@ import Heading from "@/components/Heading";
 import { ResourceDetailsProps } from "@/components/ResourceInfo/ResourceInfo.types";
 import Text from "@/components/Text";
 import { BASE_IMAGE_URL } from "@/utils/constants";
+import Image from "next/image";
 import { useState } from "react";
 import TabPanels, { TabPanel } from "../TabPanels";
 import MediaGrid from "./MediaGrid";
@@ -23,7 +24,7 @@ const ResourceInfo = <T,>({
 
   return (
     <>
-      <Heading level={1} className="mb-8">
+      <Heading level={1} className="px-6 mb-8">
         {isMovieProps(resource)
           ? resource.title
           : isTvShowProps(resource)
@@ -36,17 +37,29 @@ const ResourceInfo = <T,>({
         setActiveTab={setActiveTab}
       >
         <TabPanel id="panel-overview" activeTab={activeTab}>
-          <Heading className="mb-4">Storyline</Heading>
-          <Text className="mb-4">{resource?.overview}</Text>
-          <DescriptionList>
-            <MetaContentColumns
-              items={metaTitles as typeof metaTitles}
-              resource={resource as ResourceDetailsProps<T>}
-            />
-          </DescriptionList>
+          <div className="flex flex-col items-center md:flex-row md:items-start gap-6 max-w-screen-xl">
+            <div className="flex flex-col flex-none">
+              <Image
+                src={`${BASE_IMAGE_URL}/w300/${resource?.poster_path}`}
+                alt=""
+                width={200}
+                height={300}
+                className="w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col max-w-[66ch]">
+              <Heading className="mb-4">Storyline</Heading>
+              <Text className="mb-4">{resource?.overview}</Text>
+              <DescriptionList>
+                <MetaContentColumns
+                  items={metaTitles as typeof metaTitles}
+                  resource={resource as ResourceDetailsProps<T>}
+                />
+              </DescriptionList>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel id="panel-videos" activeTab={activeTab}>
-          {/** TODO: Create MediaGrid */}
           {resource.videos.results?.length > 0 ? (
             <MediaGrid
               resourceName="videos"
@@ -57,7 +70,6 @@ const ResourceInfo = <T,>({
           )}
         </TabPanel>
         <TabPanel id="panel-photos" activeTab={activeTab}>
-          {/** TODO: Create MediaGrid */}
           {resource.images.backdrops?.length > 0 ? (
             <MediaGrid
               title="Backdrops"
