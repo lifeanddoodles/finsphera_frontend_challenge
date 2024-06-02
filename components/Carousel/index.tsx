@@ -12,7 +12,7 @@ import { BASE_IMAGE_URL } from "@/utils/constants";
 import { useRef, useState } from "react";
 import useCarouselNavigation from "./hooks/useCarouselNavigation";
 import useDimensions from "./hooks/useDimensions";
-import { GAP_UNIT, PADDING_X_UNIT, isMovieProps } from "./utils";
+import { GAP_UNIT, isMovieProps } from "./utils";
 
 const Carousel = <
   T extends
@@ -28,7 +28,7 @@ const Carousel = <
   imageKey = "poster_path",
   pathToFooter,
 }: CarouselProps<T>) => {
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLUListElement>(null);
   const {
     elementRef: carouselContainerRef,
     dimensions: { width: carouselContainerWidth },
@@ -57,15 +57,14 @@ const Carousel = <
   };
 
   return (
-    <div className="overflow-hidden mb-10">
-      <Heading className={`px-${PADDING_X_UNIT} mb-4`}>{title}</Heading>
+    <section className="overflow-hidden mb-10" ref={carouselContainerRef}>
+      <Heading className={`px-6 mb-4`}>{title}</Heading>
       {resources.length > 0 ? (
-        <div className="relative" ref={carouselContainerRef}>
-          <div
-            className={`flex gap-${GAP_UNIT} px-${PADDING_X_UNIT}`}
+        <div className="relative">
+          <ul
+            className={`flex gap-${GAP_UNIT} px-6 transition-transform duration-300 ease-in-out`}
             ref={carouselRef}
             style={{
-              transition: "transform 0.3s ease-in-out",
               transform: `translateX(-${currentStep * translateXAmount}px)`,
             }}
           >
@@ -103,7 +102,7 @@ const Carousel = <
                 </Card.Footer>
               </Card>
             ))}
-          </div>
+          </ul>
           {/**
            * TODO: If carouselWidth <= containerWidth, remove buttons
            */}
@@ -123,7 +122,7 @@ const Carousel = <
       ) : (
         "No results found"
       )}
-    </div>
+    </section>
   );
 };
 
