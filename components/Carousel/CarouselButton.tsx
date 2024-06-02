@@ -29,7 +29,7 @@ export const CarouselButton = ({
           src="/chevron-left.svg"
           className="filter invert"
           width={24}
-          height={24}
+          height={24 * 1.6}
           alt=""
         />
       ) : (
@@ -37,7 +37,7 @@ export const CarouselButton = ({
           src="/chevron-right.svg"
           className="filter invert"
           width={24}
-          height={24}
+          height={24 * 1.6}
           alt=""
         />
       )}

@@ -3,7 +3,7 @@ import Text from "@/components/Text";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="px-6 py-4 sm:col-start-2">
       <Text size="sm" className="text-center">
         Data provided by{" "}
         <ExternalLink
