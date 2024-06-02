@@ -2,7 +2,13 @@ import { movieMetaTitles, tvShowMetaTitles } from "./utils";
 
 export type MovieMetaKeys = keyof typeof movieMetaTitles;
 export type TvShowMetaKeys = keyof typeof tvShowMetaTitles;
-export type PossibleKeyValueTypes = string | number | boolean | null;
+export type PossibleKeyValueTypes<T> =
+  | string
+  | number
+  | boolean
+  | T
+  | T[]
+  | null;
 
 export type MovieDetailsProps = {
   belongs_to_collection: {

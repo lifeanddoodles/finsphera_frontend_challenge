@@ -27,19 +27,19 @@ export const tvShowMetaTitles = {
   "[spoken_languages].name": "Language",
 } as const;
 
-/**
- * TODO: Fix type errors
- */
 export function getKeyValue<T>(key: string, resource: ResourceDetailsProps<T>) {
   if (key.includes("[")) {
     const keyTuple = key.replace(/\[|\]/g, "").split(".");
     const keyName = keyTuple[0] as keyof ResourceDetailsProps<T>;
     const valuePath = keyTuple[1];
 
-    return resource[keyName]
+    return (resource[keyName] as [])
       .map(
-        (item: { [currentKey: string]: PossibleKeyValueTypes }) =>
-          item[valuePath]
+        (item: {
+          [currentKey: string]: {
+            [key: string]: PossibleKeyValueTypes<typeof resource>;
+          };
+        }) => item[valuePath]
       )
       .join(", ");
   }
@@ -54,7 +54,9 @@ export function getKeyValue<T>(key: string, resource: ResourceDetailsProps<T>) {
         const currentStepName = currentStepWithQuery[0];
         const queryKey = currentStepWithQuery[1].split("=")[0];
         const queryValue = currentStepWithQuery[1].split("=")[1];
-        currentStepValue = currentStepValue[currentStepName];
+        currentStepValue = currentStepValue[
+          currentStepName as keyof ResourceDetailsProps<T>
+        ] as typeof currentStepValue;
 
         if (Array.isArray(currentStepValue)) {
           const match = currentStepValue.find(
@@ -63,7 +65,9 @@ export function getKeyValue<T>(key: string, resource: ResourceDetailsProps<T>) {
           currentStepValue = match?.name;
         }
       } else {
-        currentStepValue = currentStepValue[step];
+        currentStepValue = currentStepValue[
+          step as keyof ResourceDetailsProps<T>
+        ] as typeof currentStepValue;
       }
     });
 
