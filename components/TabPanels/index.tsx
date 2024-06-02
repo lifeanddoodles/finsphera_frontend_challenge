@@ -14,7 +14,7 @@ const TabPanels = ({
   setActiveTab: Dispatch<SetStateAction<string>>;
 }) => {
   return (
-    <section>
+    <section className="px-6 mb-10">
       <TabList tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {children}
     </section>

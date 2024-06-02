@@ -13,7 +13,7 @@ export const TabPanel = ({
     <section
       id={id}
       role="tabpanel"
-      className={`panel-${activeTab?.toLowerCase()}` === id ? "" : "hidden"}
+      className={`flex flex-col items-center ${`panel-${activeTab?.toLowerCase()}` === id ? "" : "hidden"}`}
     >
       {children}
     </section>

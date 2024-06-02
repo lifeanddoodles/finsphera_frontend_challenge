@@ -48,12 +48,17 @@ export default function Home() {
       {movies && movies[0] && (
         <Hero imageSrc={`${BASE_IMAGE_URL}/w1280/${movies[0].backdrop_path}`}>
           <Hero.Title>
-            <Heading level={1} className="text-3xl xl:text-4xl mb-4">
+            <Heading
+              level={1}
+              className="text-3xl sm:text-4xl xl:text-4xl mb-4"
+            >
               {movies[0].title}
             </Heading>
           </Hero.Title>
           <Hero.Body>
-            <Text className="text-sm mb-4">{movies[0].overview}</Text>
+            <Text className="text-sm mb-4">
+              {`${movies[0].overview.split(".")[0]}.`}
+            </Text>
           </Hero.Body>
           <Hero.Actions>
             {

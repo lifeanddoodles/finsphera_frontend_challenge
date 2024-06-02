@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const useDimensions = () => {
-  const elementRef = useRef<HTMLDivElement | null>(null);
+  const elementRef = useRef<HTMLDivElement | HTMLUListElement | null>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 

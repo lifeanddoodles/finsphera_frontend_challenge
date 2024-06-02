@@ -37,6 +37,9 @@ const config: Config = {
           950: colors.gray[950],
         },
       },
+      screens: {
+        "2xs": "420px",
+      },
     },
   },
   plugins: [],

@@ -18,7 +18,7 @@ const TabList = ({
           aria-controls={tab.controls}
           aria-selected={tab.name === activeTab}
           onClick={() => setActiveTab(tab.name)}
-          className="cursor-pointer text-center text-lg hover:text-primary transition duration-300 ease-in-out"
+          className="cursor-pointer text-center text-lg text-primary hover:text-primary-dark transition duration-300 ease-in-out"
         >
           {tab.name.toUpperCase()}
         </li>
