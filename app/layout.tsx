@@ -18,10 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-neutral-800 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-950 body-font min-h-screen max-w-screen overflow-x-hidden">
-        <div className="relative grid grid-cols-1 sm:grid-cols-[3.5rem,_1fr]">
+      <body className="text-neutral-800 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-950 body-font max-w-screen">
+        <div className="relative grid grid-cols-1 sm:grid-cols-[3.5rem,_1fr] min-h-screen">
           <MainNav />
-          {children}
+          <main className="flex min-h-screen flex-col sm:col-start-2 overflow-x-hidden">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

@@ -55,8 +55,7 @@ const NavItem = ({
 
 const MainNav = () => {
   return (
-    // TODO: Anchor to bottom of page on mobile
-    <nav className=" bg-primary px-4 sm:px-0 sm:py-4 sm:row-start-1 sm:row-end-3">
+    <nav className="z-50 fixed bottom-0 left-0 right-0 sm:left-auto sm:right-auto sm:top-0 bg-primary px-4 sm:px-0 sm:py-4 sm:row-start-1 sm:row-end-3">
       <ul className="flex gap-4 justify-center sm:flex-col">
         {mainNavItems.map((item) => (
           <NavItem key={item.href} {...item} />

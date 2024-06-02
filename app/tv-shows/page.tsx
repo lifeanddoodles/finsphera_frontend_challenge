@@ -36,7 +36,7 @@ export default function TvShowsCategory() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <>
       {tvShows && tvShows[0] && (
         <Hero imageSrc={`${BASE_IMAGE_URL}/w1280/${tvShows[0].backdrop_path}`}>
           <Hero.Title>
@@ -86,6 +86,6 @@ export default function TvShowsCategory() {
           />
         )
       )}
-    </main>
+    </>
   );
 }

@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <>
       {movies && movies[0] && (
         <Hero imageSrc={`${BASE_IMAGE_URL}/w1280/${movies[0].backdrop_path}`}>
           <Hero.Title>
@@ -105,6 +105,6 @@ export default function Home() {
           )}
         </div>
       )}
-    </main>
+    </>
   );
 }
