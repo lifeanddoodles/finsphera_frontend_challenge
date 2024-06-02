@@ -22,6 +22,8 @@ export const MetaContent = <T extends Record<string, string>, R>({
     .map(([key, value]) => (
       <Fragment key={key}>
         <DescriptionTerm>{value}</DescriptionTerm>
-        <DescriptionDetails>{getKeyValue(key, resource)}</DescriptionDetails>
+        <DescriptionDetails>
+          {getKeyValue(key, resource) as string}
+        </DescriptionDetails>
       </Fragment>
     ));
