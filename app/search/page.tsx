@@ -13,7 +13,7 @@ import {
 import Text from "@/components/Text";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
@@ -24,35 +24,41 @@ const SearchPage = () => {
   const [error, setError] = useState(null);
   const [feedbackEnabled, setFeedbackEnabled] = useState(false);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    if (e.target.value === "") {
-      setFeedbackEnabled(false);
-      setResults([]);
-    }
-  };
+  const handleOnChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value);
+      if (e.target.value === "") {
+        setFeedbackEnabled(false);
+        setResults([]);
+      }
+    },
+    []
+  );
 
-  const handleSubmitSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmitSearch = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    await fetch(
-      `${BASE_URL}/search/multi?query=${search}&page=1&include_adult=false&language=en&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-    )
-      .then((res) => {
-        setLoading(true);
-        return res.json();
-      })
-      .then((data) => {
-        setResults(data.results);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
-        setFeedbackEnabled(true);
-      });
-  };
+      await fetch(
+        `${BASE_URL}/search/multi?query=${search}&page=1&include_adult=false&language=en&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      )
+        .then((res) => {
+          setLoading(true);
+          return res.json();
+        })
+        .then((data) => {
+          setResults(data.results);
+        })
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          setLoading(false);
+          setFeedbackEnabled(true);
+        });
+    },
+    [search]
+  );
 
   return (
     <div className="flex flex-col">

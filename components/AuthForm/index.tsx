@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import { EmailInput, PasswordInput } from "@/components/Input";
 import Text from "@/components/Text";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
 const AuthForm = () => {
   const [form, setForm] = useState({
@@ -20,7 +20,7 @@ const AuthForm = () => {
     [errors]
   );
 
-  const passwordsMatch = () => {
+  const passwordsMatch = useCallback(() => {
     if (form.password === "" || form.confirmPassword === "") return;
     const passwordsMatchResult = form.password === form.confirmPassword;
     setError((prev) => ({
@@ -28,23 +28,32 @@ const AuthForm = () => {
       passwordMismatch: passwordsMatchResult ? null : "Passwords do not match",
     }));
     return passwordsMatchResult;
-  };
+  }, [form.confirmPassword, form.password]);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
+  const handleOnChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    },
+    []
+  );
 
-  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.target.id === "password" || e.target.id === "confirmPassword") {
-      passwordsMatch();
-    }
-  };
+  const handleOnBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      if (e.target.id === "password" || e.target.id === "confirmPassword") {
+        passwordsMatch();
+      }
+    },
+    [passwordsMatch]
+  );
 
-  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleOnSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    console.log("Submitted");
-  };
+      console.log("Submitted");
+    },
+    []
+  );
 
   return (
     <>

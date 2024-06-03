@@ -1,5 +1,5 @@
 "use client";
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes, useCallback, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type FormFieldProps = {
@@ -29,21 +29,27 @@ const Input = <T extends HTMLAttributes<HTMLInputElement>>({
   );
   const [errors, setErrors] = useState<string[]>([]);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(type !== "checkbox" ? e.target.value : e.target.checked);
-    onChange && onChange(e);
-  };
+  const handleOnChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(type !== "checkbox" ? e.target.value : e.target.checked);
+      onChange && onChange(e);
+    },
+    [onChange, type]
+  );
 
-  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const target = e.target;
-    // TODO: Add more complex validation
-    if (target.validity.valid) {
-      setErrors([]);
-    } else {
-      setErrors([target.validationMessage]);
-    }
-    onBlur && onBlur(e);
-  };
+  const handleOnBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      const target = e.target;
+      // TODO: Add more complex validation
+      if (target.validity.valid) {
+        setErrors([]);
+      } else {
+        setErrors([target.validationMessage]);
+      }
+      onBlur && onBlur(e);
+    },
+    [onBlur]
+  );
 
   const inputHasErrors = errors.length > 0;
   const mergedClassNames = twMerge(
