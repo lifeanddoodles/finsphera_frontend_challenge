@@ -1,12 +1,11 @@
 "use client";
-import Carousel from "@/components/Carousel";
 import {
   MovieProps,
   ResourceProps,
 } from "@/components/Carousel/Carousel.types";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
-import Loading from "@/components/Loading";
+import ReqCarouselResult from "@/components/ReqCarouselResult";
 import Text from "@/components/Text";
 import useFetch from "@/hooks/useFetch";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
@@ -80,66 +79,38 @@ export default function MoviesCategory() {
         </Hero>
       )}
       <>
-        {popularMoviesLoading ? (
-          <Loading />
-        ) : popularMoviesError ? (
-          <Text role="status">{popularMoviesError}</Text>
-        ) : popularMovies && popularMovies.results?.length > 0 ? (
-          <Carousel
-            title="Popular movies"
-            resourceName="movies"
-            resources={popularMovies.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No movies found</Text>
-        )}
-        {topRatedMoviesLoading ? (
-          <Loading />
-        ) : topRatedMoviesError ? (
-          <Text role="status">{topRatedMoviesError}</Text>
-        ) : topRatedMovies && topRatedMovies.results?.length > 0 ? (
-          <Carousel
-            title="Top rated movies"
-            resourceName="movies"
-            resources={topRatedMovies.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No movies found</Text>
-        )}
-        {upcomingMoviesLoading ? (
-          <Loading />
-        ) : upcomingMoviesError ? (
-          <Text role="status">{upcomingMoviesError}</Text>
-        ) : upcomingMovies && upcomingMovies.results?.length > 0 ? (
-          <Carousel
-            title="Upcoming movies"
-            resourceName="movies"
-            resources={upcomingMovies.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No movies found</Text>
-        )}
-        {nowPlayingMoviesLoading ? (
-          <Loading />
-        ) : nowPlayingMoviesError ? (
-          <Text role="status">{nowPlayingMoviesError}</Text>
-        ) : nowPlayingMovies && nowPlayingMovies.results?.length > 0 ? (
-          <Carousel
-            title="Movies now playing"
-            resourceName="movies"
-            resources={nowPlayingMovies.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No movies found</Text>
-        )}
+        <ReqCarouselResult
+          title="Popular movies"
+          resourceName="movies"
+          resources={popularMovies?.results as ResourceProps<MovieProps>[]}
+          loading={popularMoviesLoading}
+          error={popularMoviesError}
+          noResultsText="No movies found"
+        />
+        <ReqCarouselResult
+          title="Top rated movies"
+          resourceName="movies"
+          resources={topRatedMovies?.results as ResourceProps<MovieProps>[]}
+          loading={topRatedMoviesLoading}
+          error={topRatedMoviesError}
+          noResultsText="No movies found"
+        />
+        <ReqCarouselResult
+          title="Upcoming movies"
+          resourceName="movies"
+          resources={upcomingMovies?.results as ResourceProps<MovieProps>[]}
+          loading={upcomingMoviesLoading}
+          error={upcomingMoviesError}
+          noResultsText="No movies found"
+        />
+        <ReqCarouselResult
+          title="Movies now playing"
+          resourceName="movies"
+          resources={nowPlayingMovies?.results as ResourceProps<MovieProps>[]}
+          loading={nowPlayingMoviesLoading}
+          error={nowPlayingMoviesError}
+          noResultsText="No movies found"
+        />
       </>
     </>
   );

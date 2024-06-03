@@ -1,12 +1,11 @@
 "use client";
-import Carousel from "@/components/Carousel";
 import {
   ResourceProps,
   TvShowProps,
 } from "@/components/Carousel/Carousel.types";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
-import Loading from "@/components/Loading";
+import ReqCarouselResult from "@/components/ReqCarouselResult";
 import Text from "@/components/Text";
 import useFetch from "@/hooks/useFetch";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
@@ -76,51 +75,30 @@ export default function TvShowsCategory() {
           </Hero>
         )}
       <>
-        {popularTvShowsLoading ? (
-          <Loading />
-        ) : popularTvShowsError ? (
-          <Text role="status">{popularTvShowsError}</Text>
-        ) : popularTvShows && popularTvShows.results?.length > 0 ? (
-          <Carousel
-            title="Popular TV shows"
-            resourceName="tv-shows"
-            resources={popularTvShows.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No TV shows found</Text>
-        )}
-        {topRatedTvShowsLoading ? (
-          <Loading />
-        ) : topRatedTvShowsError ? (
-          <Text role="status">{topRatedTvShowsError}</Text>
-        ) : topRatedTvShows && topRatedTvShows.results?.length > 0 ? (
-          <Carousel
-            title="Top rated TV shows"
-            resourceName="tv-shows"
-            resources={topRatedTvShows.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No TV shows found</Text>
-        )}
-        {nowAiringTvShowsLoading ? (
-          <Loading />
-        ) : nowAiringTvShowsError ? (
-          <Text role="status">{nowAiringTvShowsError}</Text>
-        ) : nowAiringTvShows && nowAiringTvShows.results?.length > 0 ? (
-          <Carousel
-            title="TV shows now airing"
-            resourceName="tv-shows"
-            resources={nowAiringTvShows.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No TV shows found</Text>
-        )}
+        <ReqCarouselResult
+          title="Popular TV shows"
+          resourceName="tv-shows"
+          resources={popularTvShows?.results as ResourceProps<TvShowProps>[]}
+          loading={popularTvShowsLoading}
+          error={popularTvShowsError}
+          noResultsText="No TV shows found"
+        />
+        <ReqCarouselResult
+          title="Top rated TV shows"
+          resourceName="tv-shows"
+          resources={topRatedTvShows?.results as ResourceProps<TvShowProps>[]}
+          loading={topRatedTvShowsLoading}
+          error={topRatedTvShowsError}
+          noResultsText="No TV shows found"
+        />
+        <ReqCarouselResult
+          title="TV shows now airing"
+          resourceName="tv-shows"
+          resources={nowAiringTvShows?.results as ResourceProps<TvShowProps>[]}
+          loading={nowAiringTvShowsLoading}
+          error={nowAiringTvShowsError}
+          noResultsText="No TV shows found"
+        />
       </>
     </>
   );

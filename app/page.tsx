@@ -1,5 +1,4 @@
 "use client";
-import Carousel from "@/components/Carousel";
 import {
   MovieProps,
   ResourceProps,
@@ -7,7 +6,7 @@ import {
 } from "@/components/Carousel/Carousel.types";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
-import Loading from "@/components/Loading";
+import ReqCarouselResult from "@/components/ReqCarouselResult";
 import Text from "@/components/Text";
 import useFetch from "@/hooks/useFetch";
 import { BASE_IMAGE_URL, BASE_URL } from "@/utils/constants";
@@ -69,36 +68,22 @@ export default function Home() {
         </Hero>
       )}
       <>
-        {moviesLoading ? (
-          <Loading />
-        ) : moviesError ? (
-          <Text role="status">{moviesError}</Text>
-        ) : movies && movies.results?.length > 0 ? (
-          <Carousel
-            title="Popular movies"
-            resourceName="movies"
-            resources={movies.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No movies found</Text>
-        )}
-        {tvShowsLoading ? (
-          <Loading />
-        ) : tvShowsError ? (
-          <Text role="status">{tvShowsError}</Text>
-        ) : tvShows && tvShows.results?.length > 0 ? (
-          <Carousel
-            title="Popular TV shows"
-            resourceName="tv-shows"
-            resources={tvShows.results}
-            width={240}
-            height={360}
-          />
-        ) : (
-          <Text role="status">No TV shows found</Text>
-        )}
+        <ReqCarouselResult
+          title="Popular movies"
+          resourceName="movies"
+          resources={movies?.results as ResourceProps<MovieProps>[]}
+          loading={moviesLoading}
+          error={moviesError}
+          noResultsText="No movies found"
+        />
+        <ReqCarouselResult
+          title="Popular TV shows"
+          resourceName="tv-shows"
+          resources={tvShows?.results as ResourceProps<TvShowProps>[]}
+          loading={tvShowsLoading}
+          error={tvShowsError}
+          noResultsText="No TV shows found"
+        />
       </>
     </>
   );
