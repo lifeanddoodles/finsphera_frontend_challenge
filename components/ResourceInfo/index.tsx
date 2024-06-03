@@ -13,13 +13,20 @@ import MediaGrid from "./MediaGrid";
 import { MetaContentColumns } from "./MetaContentColumns";
 import { movieMetaTitles, tabTitles, tvShowMetaTitles } from "./utils";
 
+/**
+ * Renders the information about a resource.
+ *
+ * @param {ResourceDetailsProps<T>} resource - The resource details.
+ * @param {typeof movieMetaTitles | typeof tvShowMetaTitles} metaTitles - The meta titles for the resource.
+ * @return {JSX.Element} The rendered resource information.
+ */
 const ResourceInfo = <T,>({
   resource,
   metaTitles,
 }: {
   resource: ResourceDetailsProps<T>;
   metaTitles: typeof movieMetaTitles | typeof tvShowMetaTitles;
-}) => {
+}): JSX.Element => {
   const [activeTab, setActiveTab] = useState(tabTitles[0].name);
 
   return (

@@ -4,7 +4,14 @@ import { EmailInput, PasswordInput } from "@/components/Input";
 import Text from "@/components/Text";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
-const AuthForm = () => {
+/**
+ * Renders an authentication form with email, password, and confirm password fields.
+ * Validates that the password and confirm password fields match.
+ * Disables the submit button if there are any errors.
+ *
+ * @return {JSX.Element} The rendered authentication form.
+ */
+const AuthForm = (): JSX.Element => {
   const [form, setForm] = useState({
     email: "",
     password: "",

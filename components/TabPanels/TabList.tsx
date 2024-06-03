@@ -1,6 +1,14 @@
 import Text from "@/components/Text";
 import { Dispatch, SetStateAction } from "react";
 
+/**
+ * Renders a list of tabs with their respective controls and allows the user to switch between tabs.
+ *
+ * @param {Array<{name: string, controls: string}>} tabs - The array of tabs to be rendered.
+ * @param {string} activeTab - The currently active tab.
+ * @param {Function} setActiveTab - The function to set the active tab.
+ * @return {JSX.Element} The rendered tab list.
+ */
 const TabList = ({
   tabs,
   activeTab,
@@ -9,7 +17,7 @@ const TabList = ({
   tabs: { name: string; controls: string }[];
   activeTab: string;
   setActiveTab: Dispatch<SetStateAction<string>>;
-}) => {
+}): JSX.Element => {
   return (
     <ul role="tablist" className="flex gap-4 justify-center mb-8">
       {tabs.map((tab) => (

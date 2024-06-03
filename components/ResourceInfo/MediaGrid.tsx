@@ -8,13 +8,20 @@ import { BASE_IMAGE_URL } from "@/utils/constants";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
+/**
+ * Renders a media grid item based on the provided resource name and resource details.
+ *
+ * @param {("images" | "videos")} resourceName - The type of the resource (images or videos).
+ * @param {MediaDetailsProps} resource - The details of the resource.
+ * @return {JSX.Element} The rendered media grid item.
+ */
 const MediaGridItem = ({
   resourceName,
   resource,
 }: {
   resourceName: "images" | "videos";
   resource: MediaDetailsProps;
-}) => {
+}): JSX.Element => {
   return resourceName === "videos" ? (
     <div className="aspect-[16/9]">
       <iframe
@@ -38,6 +45,14 @@ const MediaGridItem = ({
   );
 };
 
+/**
+ * Renders a grid of media items based on the provided resource name and resources.
+ *
+ * @param {string} title - The title of the media grid.
+ * @param {("images" | "videos")} resourceName - The type of resource to display.
+ * @param {MediaDetailsProps[]} resources - The array of media resources to display.
+ * @return {JSX.Element} The rendered media grid component.
+ */
 const MediaGrid = ({
   title,
   resourceName,
@@ -64,7 +79,7 @@ const MediaGrid = ({
             resource={resource}
           />
         ))}
-        {/* TODO: Add pagination, control with Show More button */}
+        {/* TODO: Add pagination, control with Show More button or Infinite Scroll */}
       </div>
     </>
   );

@@ -14,6 +14,20 @@ import useCarouselNavigation from "./hooks/useCarouselNavigation";
 import useDimensions from "./hooks/useDimensions";
 import { GAP_UNIT, isMovieProps } from "./utils";
 
+/**
+ * Renders a carousel component with a title and a list of resources.
+ *
+ * @template T - The type of the resources in the carousel.
+ * @param {string} title - The title of the carousel.
+ * @param {string} resourceName - The name of the resource.
+ * @param {Array<T>} resources - The list of resources to display in the carousel.
+ * @param {number} width - The width of each resource card in the carousel, defaults to 240.
+ * @param {number} height - The height of each resource card in the carousel, defaults to 360.
+ * @param {string} [imagePathBase] - The base URL for the resource image.
+ * @param {string} [imageKey] - The key for accessing the image URL in the resource object.
+ * @param {string} [pathToFooter] - The key for accessing the footer text in the resource object.
+ * @return {JSX.Element} The rendered carousel component.
+ */
 const Carousel = <
   T extends
     | ResourceDetailsProps<TvShowDetailsProps | MovieDetailsProps>
@@ -27,7 +41,7 @@ const Carousel = <
   imagePathBase = `${BASE_IMAGE_URL}/w300`,
   imageKey = "poster_path",
   pathToFooter,
-}: CarouselProps<T>) => {
+}: CarouselProps<T>): JSX.Element => {
   const carouselRef = useRef<HTMLUListElement>(null);
   const {
     elementRef: carouselContainerRef,

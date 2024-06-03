@@ -13,6 +13,21 @@ export type FormFieldProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+/**
+ * Renders an input component with optional label, validation, and styling.
+ *
+ * @template T - The type of HTML attributes for the input element.
+ * @param {string} label - The label for the input.
+ * @param {string} id - The id for the input.
+ * @param {string} type - The type of the input.
+ * @param {string} value - The value of the input.
+ * @param {boolean} checked - The checked state of the input (for checkboxes).
+ * @param {string} className - The class name for the input.
+ * @param {function} onChange - The change event handler for the input.
+ * @param {function} onBlur - The blur event handler for the input.
+ * @param {T} props... - Additional HTML attributes for the input element.
+ * @return {JSX.Element} The rendered input component.
+ */
 const Input = <T extends HTMLAttributes<HTMLInputElement>>({
   label,
   id,
@@ -23,7 +38,7 @@ const Input = <T extends HTMLAttributes<HTMLInputElement>>({
   onChange,
   onBlur,
   ...props
-}: T & FormFieldProps) => {
+}: T & FormFieldProps): JSX.Element => {
   const [inputValue, setInputValue] = useState(
     type !== "checkbox" ? value || "" : checked || false
   );

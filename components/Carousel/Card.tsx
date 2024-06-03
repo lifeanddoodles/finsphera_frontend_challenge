@@ -8,6 +8,19 @@ export const Footer = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+/**
+ * Renders a card component with an image, link, and optional children.
+ *
+ * @param {CardProps} props - The props object containing the following properties:
+ *   - id: The unique identifier for the card.
+ *   - posterPath: The URL of the image to display in the card.
+ *   - href: The URL to navigate to when the card is clicked. Defaults to an empty string.
+ *   - width: The width of the image in pixels. Defaults to 240.
+ *   - height: The height of the image in pixels. Defaults to 360.
+ *   - className: The CSS class name(s) to apply to the card. Defaults to an empty string.
+ *   - children: The content to display inside the card. Defaults to an empty string.
+ * @return {JSX.Element} The rendered card component.
+ */
 export const Card = ({
   id,
   posterPath,
@@ -16,7 +29,7 @@ export const Card = ({
   height = 360,
   className,
   children,
-}: CardProps) => {
+}: CardProps): JSX.Element => {
   const figureClasses = twMerge("min-h-full ", className);
 
   return (

@@ -27,6 +27,13 @@ export const tvShowMetaTitles = {
   "[spoken_languages].name": "Language",
 } as const;
 
+/**
+ * Retrieves the value associated with a given key from a resource object.
+ *
+ * @param {string} key - The key to retrieve the value for. The key can be a simple property name or a nested property path.
+ * @param {ResourceDetailsProps<T>} resource - The resource object to retrieve the value from.
+ * @return {PossibleKeyValueTypes<typeof resource> | string} - The value associated with the given key, or undefined if the key does not exist.
+ */
 export function getKeyValue<T>(key: string, resource: ResourceDetailsProps<T>) {
   if (key.includes("[")) {
     const keyTuple = key.replace(/\[|\]/g, "").split(".");

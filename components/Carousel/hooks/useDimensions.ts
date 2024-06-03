@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Custom hook that returns the dimensions of a HTMLDivElement or HTMLUListElement.
+ *
+ * @return {Object} An object containing a reference to the element and its dimensions.
+ */
 const useDimensions = () => {
   const elementRef = useRef<HTMLDivElement | HTMLUListElement | null>(null);
   const [width, setWidth] = useState(0);

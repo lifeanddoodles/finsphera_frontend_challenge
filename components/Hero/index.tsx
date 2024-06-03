@@ -12,13 +12,20 @@ const Actions = ({ children }: { children: React.ReactNode }) => {
   return <footer role="group">{children}</footer>;
 };
 
+/**
+ * Renders a Hero component with a background image and a text overlay.
+ *
+ * @param {React.ReactNode} children - The content to be displayed in the Hero component.
+ * @param {string} imageSrc - The URL of the background image.
+ * @return {JSX.Element} The Hero component.
+ */
 const Hero = ({
   children,
   imageSrc,
 }: {
   children: React.ReactNode;
   imageSrc: string;
-}) => {
+}): JSX.Element => {
   return (
     <section className="relative bg-black h-fit flex flex-col justify-center items-center aspect-[3/3] 2xs:aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] md:items-start lg:aspect-[24/9] py-8 mb-10">
       <div className="absolute w-full h-full after:absolute after:bg-[#00000080] after:w-full after:h-full after:left-0 after:top-0">

@@ -71,6 +71,13 @@ function getBorderClasses(variant: ButtonVariant, color: ButtonColor) {
   }
 }
 
+/**
+ * Generates the CSS classes for a button based on the variant and color.
+ *
+ * @param {ButtonVariant} variant - The variant of the button ("solid", "outline", "ghost", or "link").
+ * @param {ButtonColor} color - The color of the button ("primary", "secondary", or "accent").
+ * @return {string} The CSS classes for the button.
+ */
 export function getButtonClasses(variant: ButtonVariant, color: ButtonColor) {
   const spacingClasses = variant === "link" ? "" : "rounded-lg py-1 px-3";
   const baseClasses = `text-base ${spacingClasses} mb-4`;

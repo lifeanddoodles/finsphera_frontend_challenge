@@ -30,6 +30,14 @@ const mainNavItems = [
   },
 ];
 
+/**
+ * Renders a navigation item with a title, icon, and link.
+ *
+ * @param {string} title - The title of the navigation item.
+ * @param {string} iconSrc - The source URL of the icon image.
+ * @param {string} href - The URL to navigate to when the item is clicked.
+ * @return {JSX.Element} The rendered navigation item.
+ */
 const NavItem = ({
   title,
   iconSrc,
@@ -38,7 +46,7 @@ const NavItem = ({
   title: string;
   iconSrc: string;
   href: string;
-}) => {
+}): JSX.Element => {
   return (
     <li>
       <Link
