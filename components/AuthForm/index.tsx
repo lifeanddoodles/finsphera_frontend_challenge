@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import { EmailInput, PasswordInput } from "@/components/Input";
 import Text from "@/components/Text";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 
 const AuthForm = () => {
   const [form, setForm] = useState({
@@ -14,6 +14,11 @@ const AuthForm = () => {
   const [errors, setError] = useState<{ passwordMismatch: string | null }>({
     passwordMismatch: null,
   });
+
+  const disableSubmit = useMemo(
+    () => Object.entries(errors).some(([_, value]) => value !== null),
+    [errors]
+  );
 
   const passwordsMatch = () => {
     if (form.password === "" || form.confirmPassword === "") return;
@@ -79,7 +84,10 @@ const AuthForm = () => {
         {errors.passwordMismatch && (
           <Text role="status">{errors.passwordMismatch}</Text>
         )}
-        <Button type="submit">Submit</Button>
+        {/* TODO: Add more complex checking to disable button */}
+        <Button type="submit" disabled={disableSubmit}>
+          Submit
+        </Button>
       </form>
     </>
   );

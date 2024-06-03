@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import Button from ".";
 
@@ -19,7 +19,10 @@ describe("Button", () => {
     render(<Button onClick={mockOnClick}>Click</Button>);
     const element = screen.getByRole("button");
 
-    await user.click(element);
+    await act(async () => {
+      await user.click(element);
+    });
+
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 });

@@ -21,14 +21,14 @@ I have minimal experience with AWS, but here's what I could gather:
 
 ## What I would add if I had more time
 
-- Unit tests
-- Format meta data
+- Unit tests for more complex components
+- Format meta data like amounts of money and dates
 - Review rating component
+- Disable auth form if a field has an error, currently it only works if passwords don't match
 - Add Meta per page
-- Reorganize types, some are used in multiple components
+- Reorganize some types and components, as they are used in multiple modules
 - Add Schema markup, like [Movie](https://schema.org/Movie) and [TVSeries](https://schema.org/TVSeries)
-- Add general loading
-- Create components for layout like Column and Row
 - Component stories
-- API routes on Next.js
+- API routes on Next.js for more customization
+- Create components for layout like Column and Row
 - I left a few TODO comments through the application as well
